@@ -1,0 +1,12 @@
+Package: fmatch
+Type: Package
+Title: Fast string matching with limited wildcard support
+Version: 0.1
+Date: 2015-02-12
+Author: David Holstius
+Maintainer: David Holstius <dholstius@baaqmd.gov>
+Description: Fast string matching with limited wildcard support
+License: GPL (>= 2)
+Imports:
+    Rcpp (>= 0.11.3)
+LinkingTo: Rcpp
