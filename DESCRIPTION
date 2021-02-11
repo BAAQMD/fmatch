@@ -2,7 +2,7 @@ Package: fmatch
 Type: Package
 Title: Fast string matching with limited wildcard support
 Version: 0.1
-Date: 2021-02-04
+Date: 2021-02-11
 Author: David Holstius
 Maintainer: David Holstius <dholstius@baaqmd.gov>
 Description: Fast string matching with limited wildcard support
