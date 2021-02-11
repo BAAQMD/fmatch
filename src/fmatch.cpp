@@ -20,7 +20,7 @@ char *as_c_str( const std::string & s ) {
 //' Fast string matching with limited wildcard support
 //' 
 //' @description
-//' For each string in \code{x}, find the find match in \code{y}.
+//' For each string in \code{x}, find the match in \code{y}.
 //' The character '?' is treated as a wildcard in both \code{x} and \code{y}.
 //' 
 //' @param x character

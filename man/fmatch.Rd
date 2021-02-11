@@ -15,6 +15,6 @@ fmatch(x, y)
 integer positions of matches in \code{y} (\code{NA} indicates no match)
 }
 \description{
-For each string in \code{x}, find the find match in \code{y}.
+For each string in \code{x}, find the match in \code{y}.
 The character '?' is treated as a wildcard in both \code{x} and \code{y}.
 }
