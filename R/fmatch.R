@@ -24,6 +24,28 @@ fmatch <- function (x, y) {
 }
 
 fmatch_R <- function (x, y) {
+
+  stopifnot(
+    is.character(x), length(x) > 0,
+    is.character(y), length(y) > 0)
+  
+  # This is cheating, because characters can be multibyte.
+  # But, it illustrates the right behavior.
+  
+  result <- rep(NA_integer_, length(x))
+  
+  for (i in seq_along(x)) {
+    is_match <- FALSE
+    for (j in seq_along(y)) {
+      if (isTRUE(raw_cmp_wild_(x[i], y[j]))) {
+        is_match <- TRUE
+        break
+      }
+    }
+    result[i] <- j
+  }
+  
+  return(result)
   
 }
 
