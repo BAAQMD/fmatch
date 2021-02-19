@@ -17,10 +17,10 @@ test_that("no wildcards", {
 
 test_that("improper input throws error", {
   
-  expect_error(fmatch(list("foo"), FBFBB), "Expecting a string vector")
-  expect_error(fmatch(NULL, FBFBB), "Expecting a string vector")
-  expect_error(fmatch(0.0, FBFBB), "Expecting a string vector")
-  expect_error(fmatch(0L, FBFBB), "Expecting a string vector")
+  expect_error(fmatch(list("foo"), FBFBB))
+  expect_error(fmatch(NULL, FBFBB))
+  expect_error(fmatch(0.0, FBFBB))
+  expect_error(fmatch(0L, FBFBB))
   
 })
 
