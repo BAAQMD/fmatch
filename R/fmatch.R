@@ -39,7 +39,7 @@ fmatch_R <- function (x, y) {
     for (j in seq_along(y)) {
       if (isTRUE(raw_cmp_wild_(x[i], y[j]))) {
         result[i] <- j
-        break
+        break # exit the j loop
       }
     }
   }
