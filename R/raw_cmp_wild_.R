@@ -1,6 +1,6 @@
 #' raw_cmp_wild_
 #' 
-#' Compare two **length-one** character strings, treated as raw, allowing for wildcards in either one.
+#' Compare two **length-one** character vectors, treated as raw, allowing for wildcards in either one.
 #' 
 #' @seealso `fmatch()`, which depends on `compare_`
 #' 
