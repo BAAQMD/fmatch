@@ -38,11 +38,10 @@ fmatch_R <- function (x, y) {
     is_match <- FALSE
     for (j in seq_along(y)) {
       if (isTRUE(raw_cmp_wild_(x[i], y[j]))) {
-        is_match <- TRUE
+        result[i] <- j
         break
       }
     }
-    result[i] <- j
   }
   
   return(result)
