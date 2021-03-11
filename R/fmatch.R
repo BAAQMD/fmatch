@@ -19,32 +19,32 @@
 #' Strings with different lengths (like "f?" and "foo") are not considered matches.
 #' 
 #' @export
-fmatch <- function (x, y) {
-  fmatch_R(x, y)
-}
-
-fmatch_R <- function (x, y) {
-
-  stopifnot(
-    is.character(x), length(x) > 0,
-    is.character(y), length(y) > 0)
-  
-  # This is cheating, because characters can be multibyte.
-  # But, it illustrates the right behavior.
-  
-  result <- rep(NA_integer_, length(x))
-  
-  for (i in seq_along(x)) {
-    is_match <- FALSE
-    for (j in seq_along(y)) {
-      if (isTRUE(raw_cmp_wild_(x[i], y[j]))) {
-        result[i] <- j
-        break # exit the j loop
-      }
+fmatch = function(x, y)
+{
+  for (i in 1:length(y))
+  {
+    if (stringr::str_detect(y[i], convert_to_wildcard(x)))
+    {
+      return(i)
     }
   }
-  
-  return(result)
-  
+  NA_integer_
 }
 
+# take a string such as "hi"
+# convert it to "[h?][i?]"
+# in regular expressions, this means that each character in the string
+# will now match to both its original value AND the character ?
+# this is important because, for our purposes,
+# ? is a wildcard character in the haystack string
+convert_to_wildcard = function(x)
+{
+  ret = ""
+  for (i in 1:nchar(x))
+  {
+    char = substr(x, i, i)
+    char_with_wildcard = glue::glue("[{char}?]")
+    ret = paste0(ret, char_with_wildcard)
+  }
+  ret
+}
