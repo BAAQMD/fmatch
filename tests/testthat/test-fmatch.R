@@ -9,9 +9,9 @@ test_that("no wildcards", {
   expect_equal(fmatch("bap", FBFBB), 5)  # "b?p" found at position 5
   
   # when no match exists
-  #expect_equal(fmatch("zzz", FBFBB), NA_integer_) # "zzz" is not found
-  #expect_equal(fmatch("", FBFBB), NA_integer_) # "" is not found
-  # expect_equal(fmatch(NA_character_, FBFBB), NA_integer_) # `NA_character_` is not found
+  expect_equal(fmatch("zzz", FBFBB), NA_integer_) # "zzz" is not found
+  expect_equal(fmatch("", FBFBB), NA_integer_) # "" is not found
+  expect_equal(fmatch(NA_character_, FBFBB), NA_integer_) # `NA_character_` is not found
   
 })
 # 

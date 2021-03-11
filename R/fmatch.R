@@ -21,6 +21,11 @@
 #' @export
 fmatch = function(x, y)
 {
+  if (is.na(x))
+  {
+    return(NA_integer_)
+  }
+  
   for (i in 1:length(y))
   {
     if (stringr::str_detect(y[i], convert_to_wildcard(x)))
