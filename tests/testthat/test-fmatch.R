@@ -65,3 +65,9 @@ test_that("vectorized for `x` having length > 1", {
  expect_equal(fmatch(c("b?r", "zzz"), FBFBB), c(2, NA_integer_))
 
 })
+
+test_that("handpicked src_code and SIC_id combinations", {
+  
+  expect_equal(fmatch::fmatch("C22BG0983674", "C22BX098???"), 1)
+  
+})
