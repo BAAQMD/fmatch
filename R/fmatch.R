@@ -32,13 +32,17 @@ fmatch = function(needles, haystacks)
       ret = c(ret, NA_integer_)
       next
     }
+
+    converted <- convert_needle_to_regex(needle)
+    needle_nchar <- nchar(needle)
     
     found = FALSE
     for (j in 1:length(haystacks))
     {
       haystack = haystacks[j]
-      if (nchar(needle) == nchar(haystack) && 
-          stringr::str_detect(haystack, convert_needle_to_regex(needle)))
+      haystack_nchar <- nchar(haystack)
+      if (needle_nchar == haystack_nchar) && 
+          str_detect(haystack, converted))
       {
         found = TRUE
         ret = c(ret, j)
