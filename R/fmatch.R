@@ -24,7 +24,8 @@ fmatch = function(needles, haystacks)
   ret = numeric()
   for (i in 1:length(needles))
   {
-    if (is.na(needles[i]))
+    needle = needles[i]
+    if (is.na(needle))
     {
       ret = c(ret, NA_integer_)
       next
@@ -33,7 +34,9 @@ fmatch = function(needles, haystacks)
     found = FALSE
     for (j in 1:length(haystacks))
     {
-      if (stringr::str_detect(haystacks[j], convert_needle_to_regex(needles[i])))
+      haystack = haystacks[j]
+      if (nchar(needle) == nchar(haystack) && 
+          stringr::str_detect(haystack, convert_needle_to_regex(needle)))
       {
         found = TRUE
         ret = c(ret, j)
