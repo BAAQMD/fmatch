@@ -68,6 +68,6 @@ test_that("vectorized for `x` having length > 1", {
 
 test_that("handpicked src_code and SIC_id combinations", {
   
-  expect_equal(fmatch::fmatch("C22BG0983674", "C22BX098???"), 1)
+  expect_equal(fmatch::fmatch("C22BG0983674", "C22BX098????"), 1)
   
 })
