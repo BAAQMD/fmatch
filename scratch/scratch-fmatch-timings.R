@@ -6,12 +6,12 @@ RY_data <-
 
 haystacks <- str_replace_all(with(t0130, paste0(c1_8, c9_12)), "X", "?")
 
-SAMPLE_SIZES <- c(1, 3, 10, 30, 100, 300)
+SAMPLE_SIZES <- c(1, 3, 10, 30, 100, 300, 1000)
 
 time_it <- function (sample_size = 1, times = 3) {
   sampled_data <- sample_n(RY_data, sample_size)
   needles <- str_replace_all(with(sampled_data, paste0(src_code, SIC_id)), "X", "?")
-  microbenchmark::microbenchmark(fmatch::fmatch(needles, haystacks), times = times)
+  microbenchmark::microbenchmark(fmatch(needles, haystacks), times = times)
 }
 
 timings <-
