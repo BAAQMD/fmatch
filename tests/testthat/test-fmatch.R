@@ -48,16 +48,16 @@ test_that("mismatched string lengths yield NA", {
   expect_equal(fmatch("????", FBFBB), NA_integer_)
 
 })
-#
-# test_that("improper input throws error", {
-#   
-#   expect_error(fmatch(list("foo"), FBFBB))
-#   expect_error(fmatch(NULL, FBFBB))
-#   expect_error(fmatch(0.0, FBFBB))
-#   expect_error(fmatch(0L, FBFBB))
-#   
-# })
-# 
+
+test_that("improper input throws error", {
+
+  expect_error(fmatch(list("foo"), FBFBB))
+  expect_error(fmatch(NULL, FBFBB))
+  expect_error(fmatch(0.0, FBFBB))
+  expect_error(fmatch(0L, FBFBB))
+
+})
+
 test_that("vectorized for `x` having length > 1", {
 
  expect_equal(fmatch(c("foo", "bar"), FBFBB), c(1, 2))

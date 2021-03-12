@@ -21,6 +21,8 @@
 #' @export
 fmatch = function(needles, haystacks)
 {
+  stopifnot(class(needles) == "character")
+  
   ret = numeric()
   for (i in 1:length(needles))
   {
