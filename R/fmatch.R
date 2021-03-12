@@ -28,7 +28,7 @@ fmatch = function(needle, haystacks)
   
   for (i in 1:length(haystacks))
   {
-    if (stringr::str_detect(haystacks[i], convert_to_wildcard(needle)))
+    if (stringr::str_detect(haystacks[i], convert_needle_to_regex(needle)))
     {
       return(i)
     }
@@ -36,22 +36,32 @@ fmatch = function(needle, haystacks)
   NA_integer_
 }
 
-# take a string such as "hi"
-# convert it to "[h?][i?]"
-# in regular expressions, this means that each character in the string
-# will now match to both its original value AND the character ?
-# this is important because, for our purposes,
-# ? is a wildcard character in the haystack string
-convert_to_wildcard = function(x)
+# converting a needle to "regex" is complex because the domain fmatch
+# is used in treats "?" as a wildcard. However, regex does has its own
+# wildcard character. Additionally, fmatch supports wildcards in both 
+# needle and haystack. But regex really only supports wildcards in the 
+# needle.
+# as such, convert_needle_to_haystack does two things:
+# 1. convert each occurence of "?" to "." 
+#    In regex "." means "match every character except a newline".
+# 2. convert each other character "x" to "[x?]". In regex "[]" means
+#    "character class", and the extra "?" means "also match "?" 
+#    (which, again, is the fmatch wildcard)
+# see https://github.com/rstudio/cheatsheets/blob/master/strings.pdf
+convert_needle_to_regex = function(needle)
 {
   ret = ""
-  for (i in 1:nchar(x))
+  for (i in 1:nchar(needle))
   {
-    char = substr(x, i, i)
-    if (char == "?")
+    char = substr(needle, i, i)
+    if (char == "?") # the wildcard in needle
     {
+      # in regex, "." means "every character except a newline. 
       ret = paste0(ret, ".")
     } else {
+      # [] denotes a character class
+      # here the class has 2 elements: the original char and ? 
+      # (the wildcard in haystack)
       char_with_wildcard = glue::glue("[{char}?]")
       ret = paste0(ret, char_with_wildcard)
     }
