@@ -37,16 +37,16 @@ test_that("two or more wildcards", {
   expect_equal(fmatch("??z", FBFBB), 4)
 
 })
-# 
+
 # test_that("mismatched string lengths yield NA", {
-#   
+# 
 #   expect_equal(fmatch("f", FBFBB), NA_integer_)
 #   expect_equal(fmatch("??", FBFBB), NA_integer_)
-#   
-#   # This actually returns `2` with the existing `fmatch()`, 
+# 
+#   # This actually returns `2` with the existing `fmatch()`,
 #   # which is the wrong behavior. Oops!
 #   expect_equal(fmatch("????", FBFBB), NA_integer_)
-#   
+# 
 # })
 #
 # test_that("improper input throws error", {
@@ -58,10 +58,10 @@ test_that("two or more wildcards", {
 #   
 # })
 # 
-# test_that("vectorized for `x`` having length > 1", {
-#   
-#   expect_equal(fmatch(c("foo", "bar"), FBFBB), c(1, 2))
-#   expect_equal(fmatch(c("ba?", "??z"), FBFBB), c(2, 4))
-#   expect_equal(fmatch(c("b?r", "zzz"), FBFBB), c(2, NA_integer_))
-#   
-# })
+test_that("vectorized for `x` having length > 1", {
+
+ expect_equal(fmatch(c("foo", "bar"), FBFBB), c(1, 2))
+ expect_equal(fmatch(c("ba?", "??z"), FBFBB), c(2, 4))
+ expect_equal(fmatch(c("b?r", "zzz"), FBFBB), c(2, NA_integer_))
+
+})

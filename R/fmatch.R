@@ -19,21 +19,33 @@
 #' Strings with different lengths (like "f?" and "foo") are not considered matches.
 #' 
 #' @export
-fmatch = function(needle, haystacks)
+fmatch = function(needles, haystacks)
 {
-  if (is.na(needle))
+  ret = numeric()
+  for (i in 1:length(needles))
   {
-    return(NA_integer_)
-  }
-  
-  for (i in 1:length(haystacks))
-  {
-    if (stringr::str_detect(haystacks[i], convert_needle_to_regex(needle)))
+    if (is.na(needles[i]))
     {
-      return(i)
+      ret = c(ret, NA_integer_)
+      next
+    }
+    
+    found = FALSE
+    for (j in 1:length(haystacks))
+    {
+      if (stringr::str_detect(haystacks[j], convert_needle_to_regex(needles[i])))
+      {
+        found = TRUE
+        ret = c(ret, j)
+        break
+      }
+    }
+    if (!found) 
+    {
+      ret = c(ret, NA_integer_)
     }
   }
-  NA_integer_
+  ret
 }
 
 # converting a needle to "regex" is complex because the domain fmatch
