@@ -19,16 +19,16 @@
 #' Strings with different lengths (like "f?" and "foo") are not considered matches.
 #' 
 #' @export
-fmatch = function(x, y)
+fmatch = function(needle, haystacks)
 {
-  if (is.na(x))
+  if (is.na(needle))
   {
     return(NA_integer_)
   }
   
-  for (i in 1:length(y))
+  for (i in 1:length(haystacks))
   {
-    if (stringr::str_detect(y[i], convert_to_wildcard(x)))
+    if (stringr::str_detect(haystacks[i], convert_to_wildcard(needle)))
     {
       return(i)
     }
