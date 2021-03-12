@@ -14,6 +14,6 @@
 #' @export
 #' 
 fmatch <- function(x, y) {
-    .Call('_fmatch_fmatch', PACKAGE = 'fmatch', x, y)
+    .Call(`_fmatch_fmatch`, x, y)
 }
 
