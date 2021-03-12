@@ -48,8 +48,13 @@ convert_to_wildcard = function(x)
   for (i in 1:nchar(x))
   {
     char = substr(x, i, i)
-    char_with_wildcard = glue::glue("[{char}?]")
-    ret = paste0(ret, char_with_wildcard)
+    if (char == "?")
+    {
+      ret = paste0(ret, ".")
+    } else {
+      char_with_wildcard = glue::glue("[{char}?]")
+      ret = paste0(ret, char_with_wildcard)
+    }
   }
   ret
 }

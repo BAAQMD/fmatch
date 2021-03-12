@@ -31,12 +31,12 @@ test_that("single wildcard", {
 
 })
 
-# test_that("two or more wildcards", {
-#   
-#   # "??z" matches "baz" at position 4
-#   expect_equal(fmatch("??z", FBFBB), 4)
-#   
-# })
+test_that("two or more wildcards", {
+
+  # "??z" matches "baz" at position 4
+  expect_equal(fmatch("??z", FBFBB), 4)
+
+})
 # 
 # test_that("mismatched string lengths yield NA", {
 #   
