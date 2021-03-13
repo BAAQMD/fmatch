@@ -9,10 +9,9 @@ int str_wcmp(const char* s1, const char* s2, const char wild = '?')
   return *(const unsigned char*)s1 - *(const unsigned char*)s2;
 }
 
-char *as_c_str( const std::string & s ) {
-   char *cpy = new char[s.size() + 1];
-   std::strcpy(cpy, s.c_str());
-   return cpy; 
+char *as_c_str( String s ) 
+{
+  return strdup(s.get_cstring());
 }
 
 //' Fast string matching with limited wildcard support
