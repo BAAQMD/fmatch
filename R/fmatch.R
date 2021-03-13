@@ -84,7 +84,6 @@ convert_needle_to_regex = function(needle)
       # here the class has 2 elements: the original char and ? 
       # (the wildcard in haystack)
       char_with_wildcard = paste0("[", char, "?]")
-      stopifnot(char_with_wildcard == char_with_wildcard)
       ret = paste0(ret, char_with_wildcard)
     }
   }
