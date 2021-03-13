@@ -16,3 +16,4 @@ Suggests:
     inventory,
     tidyverse,
     here
+VignetteBuilder: knitr
