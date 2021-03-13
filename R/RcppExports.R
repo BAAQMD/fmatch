@@ -4,14 +4,12 @@
 #' Fast string matching with limited wildcard support
 #' 
 #' @description
-#' For each string in \code{x}, find the match in \code{y}.
-#' The character '?' is treated as a wildcard in both \code{x} and \code{y}.
+#' For each string in `x`, finds the _first_ match in _y_.
+#' The character '?' is treated as a wildcard in both `x` and `y`.
 #' 
 #' @param x character
 #' @param y character
 #' @return integer positions of matches in \code{y} (\code{NA} indicates no match)
-#' 
-#' @export
 #' 
 fmatch <- function(x, y) {
     .Call(`_fmatch_fmatch`, x, y)
