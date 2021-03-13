@@ -25,7 +25,7 @@ char *as_c_str( String s )
 //' @return integer positions of matches in \code{y} (\code{NA} indicates no match)
 //' 
 // [[Rcpp::export]]
-IntegerVector fmatch( CharacterVector x, CharacterVector y ) 
+IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y ) 
 {
 
   int x_size = x.size();
