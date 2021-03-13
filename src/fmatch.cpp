@@ -31,6 +31,7 @@ IntegerVector fmatch( CharacterVector x, CharacterVector y )
   int x_size = x.size();
   int y_size = y.size();
   IntegerVector r( x_size );
+  
   // Initialize our result. It's a vector of `NA`s, until/unless they
   // are set to an integer, which happens when a match is encountered.
   IntegerVector r( x.size(), NA_INTEGER );
@@ -45,9 +46,9 @@ IntegerVector fmatch( CharacterVector x, CharacterVector y )
   for( int i=0; i < x_size; i++ ) {
     r(i) = NA_INTEGER;
     for( int j=0; j < y_size; j++ ) {
-  // For every element of `x`, search through `y` until a match is found;
-  // if no match is found, then `r(i)` will remain `NA`, and we'll move on 
-  // to the next element of `x`.
+      // For every element of `x`, search through `y` until a match is found;
+      // if no match is found, then `r(i)` will remain `NA`, and we'll move on 
+      // to the next element of `x`.
       if( str_wcmp( s1[i], s2[j] ) == 0 ) {
         // Found a match. Set `r(i)` equal to the index of the match, then break.
         // (Add 1 because R indexing starts at 1, whereas C++ starts at 0.)
