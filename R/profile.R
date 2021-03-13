@@ -11,4 +11,6 @@ words = read_csv("/usr/share/dict/words") %>%
 haystacks = as.character(words$A)
 needles = sample(haystacks, 1000)
 
-fmatch(needles, haystacks)
+x = fmatch(needles, haystacks) # 11,810
+y = fmatch_no_regex(needles, haystacks) # 2,150
+all(x==y)
