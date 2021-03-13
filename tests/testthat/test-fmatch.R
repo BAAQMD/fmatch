@@ -68,6 +68,12 @@ test_that("vectorized for `x` having length > 1", {
 
 test_that("handpicked src_code and SIC_id combinations", {
   
-  expect_equal(fmatch("C22BG0983674", "C22??098????"), 1)
+  # Note: see vignette for profiling using all strings and patterns
+  
+  strings <- readRDS(here::here("tests", "testthat", "data", "strings.Rds"))
+  patterns <- readRDS(here::here("tests", "testthat", "data", "patterns.Rds"))
+  
+  expect_identical(patterns[62], "C22B?098????")
+  expect_identical(fmatch("C22BG0983674", patterns), 62L)
   
 })
