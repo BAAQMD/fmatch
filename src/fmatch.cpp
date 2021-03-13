@@ -30,8 +30,7 @@ IntegerVector fmatch( CharacterVector x, CharacterVector y )
 
   int x_size = x.size();
   int y_size = y.size();
-  IntegerVector r( x_size );
-  
+
   // Initialize our result. It's a vector of `NA`s, until/unless they
   // are set to an integer, which happens when a match is encountered.
   IntegerVector r( x.size(), NA_INTEGER );
@@ -44,7 +43,6 @@ IntegerVector fmatch( CharacterVector x, CharacterVector y )
   std::transform(y.begin(), y.end(), std::back_inserter(s2), as_c_str);
   
   for( int i=0; i < x_size; i++ ) {
-    r(i) = NA_INTEGER;
     for( int j=0; j < y_size; j++ ) {
       // For every element of `x`, search through `y` until a match is found;
       // if no match is found, then `r(i)` will remain `NA`, and we'll move on 
