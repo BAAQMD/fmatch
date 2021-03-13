@@ -1,10 +1,14 @@
 library(tidyverse)
-words = read_csv("/usr/share/dict/words")
 
-haystacks = sample_n(words, 10000)
-needles = sample_n(haystacks, 100)
+set.seed(2021)
 
-haystacks = haystacks$A
-needles = needles$A
+# filter to median length words only
+# want to avoid the early out taking so long
+words = read_csv("/usr/share/dict/words") %>%
+  filter(nchar(A) == 9) %>%
+  sample_n(1000) 
+
+haystacks = as.character(words$A)
+needles = sample(haystacks, 1000)
 
 fmatch(needles, haystacks)

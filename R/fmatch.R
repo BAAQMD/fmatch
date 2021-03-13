@@ -39,15 +39,15 @@ fmatch = function(needles, haystacks)
     found = FALSE
     for (j in 1:length(haystacks))
     {
-      haystack = haystacks[j]
-      haystack_nchar <- nchar(haystack)
-      if (needle_nchar == haystack_nchar && 
-          str_detect(haystack, converted))
+      if (needle_nchar == nchar(haystacks[j]))
       {
-        found = TRUE
-        ret = c(ret, j)
-        break
-      }
+        if (str_detect(haystacks[j], converted))
+        {
+          found = TRUE
+          ret = c(ret, j)
+          break
+        }
+      } 
     }
     if (!found) 
     {
