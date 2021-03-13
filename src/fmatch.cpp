@@ -2,11 +2,11 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-int str_wcmp(const char* s1, const char* s2)
 // To compare two C strings, with limited wildcard support
+int str_wcmp(const char* s1, const char* s2, const char wild = '?')
 {
-    while( *s1 && ( (*s1==*s2) || (*s1=='?') || (*s2=='?') ) ) s1++, s2++;
-    return *(const unsigned char*)s1 - *(const unsigned char*)s2;
+  while( *s1 && *s2 && ( (*s1==*s2) || (*s1==wild) || (*s2==wild) ) ) s1++, s2++;
+  return *(const unsigned char*)s1 - *(const unsigned char*)s2;
 }
 
 char *as_c_str( const std::string & s ) {
