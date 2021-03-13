@@ -6,13 +6,13 @@
 using namespace Rcpp;
 
 // fmatch
-IntegerVector fmatch(std::vector< std::string > x, std::vector< std::string > y);
+IntegerVector fmatch(CharacterVector x, CharacterVector y);
 RcppExport SEXP _fmatch_fmatch(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector< std::string > >::type x(xSEXP);
-    Rcpp::traits::input_parameter< std::vector< std::string > >::type y(ySEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type y(ySEXP);
     rcpp_result_gen = Rcpp::wrap(fmatch(x, y));
     return rcpp_result_gen;
 END_RCPP
