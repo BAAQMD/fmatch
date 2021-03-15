@@ -25,7 +25,7 @@ patterns <- readRDS(here::here("tests", "testthat", "data", "patterns.Rds"))
 ```{r time_it}
 time_it <- function (size = 1, times = 3) {
   sampled_strings <- sample(strings, size, replace = TRUE)
-  microbenchmark(fmatch(strings, patterns), times = times)
+  microbenchmark(fmatch(sampled_strings, patterns), times = times)
 }
 ```
 
