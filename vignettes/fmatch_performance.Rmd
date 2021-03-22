@@ -9,7 +9,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup}
+```{r message=FALSE, setup}
 library(tidyverse)
 library(ggplot2)
 library(microbenchmark)
