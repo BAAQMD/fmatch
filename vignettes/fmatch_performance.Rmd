@@ -14,6 +14,7 @@ library(tidyverse)
 library(ggplot2)
 library(microbenchmark)
 library(ggtools)
+library(fmatch)
 ```
 
 ```{r SAMPLE_SIZES}
