@@ -33,7 +33,7 @@ IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y
 
   // Initialize our result. It's a vector of `NA`s, until/unless they
   // are set to an integer, which happens when a match is encountered.
-  IntegerVector r( x.size(), NA_INTEGER );
+  IntegerVector r( x_size, NA_INTEGER );
   
   // Copy everything to C-style strings before we start comparing.
   // This saves us from having to convert all of the strings in `y`
