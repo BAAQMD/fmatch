@@ -2,16 +2,30 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
-// To compare two C strings, with limited wildcard support
-int str_wcmp(const char* s1, const char* s2, const char wild = '?')
+bool strings_wildcard_equal(const std::string& s1, 
+                            const std::string& s2)
 {
-  while( *s1 && *s2 && ( (*s1==*s2) || (*s1==wild) || (*s2==wild) ) ) s1++, s2++;
-  return *(const unsigned char*)s1 - *(const unsigned char*)s2;
-}
-
-char *as_c_str( String s ) 
-{
-  return strdup(s.get_cstring());
+  // if two strings are not the same length, they cannot be equal
+  if (s1.length() != s2.length()) 
+    return false;
+  
+  // character-by-character test for "wildcard equality"
+  for (int i = 0; i < s1.length(); ++i)
+  {
+    if ((s1[i] == s2[i]) || // chars are equal
+        (s1[i] == '?')   || // s1's char is wildcard
+        (s2[i] == '?'))     // s2's char is wildcard
+    {
+      continue;
+    }
+    else
+    {
+      return false;
+    }
+  }
+    // both strings were the same length
+    // and all characters were "wildcard equivalent", so return true
+    return true;
 }
 
 //' Fast string matching with limited wildcard support
@@ -25,7 +39,7 @@ char *as_c_str( String s )
 //' @return integer positions of matches in \code{y} (\code{NA} indicates no match)
 //' 
 // [[Rcpp::export]]
-IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y ) 
+IntegerVector fmatch( const std::vector< std::string >& x, const std::vector< std::string >& y ) 
 {
 
   int x_size = x.size();
@@ -35,19 +49,12 @@ IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y
   // are set to an integer, which happens when a match is encountered.
   IntegerVector r( x_size, NA_INTEGER );
   
-  // Copy everything to C-style strings before we start comparing.
-  // This saves us from having to convert all of the strings in `y`
-  // more than once, which is helpful when `x` has a lot of elements.
-  std::vector<const char*> s1, s2;
-  std::transform(x.begin(), x.end(), std::back_inserter(s1), as_c_str);
-  std::transform(y.begin(), y.end(), std::back_inserter(s2), as_c_str);
-  
   for( int i=0; i < x_size; i++ ) {
     for( int j=0; j < y_size; j++ ) {
       // For every element of `x`, search through `y` until a match is found;
-      // if no match is found, then `r(i)` will remain `NA`, and we'll move on 
+      // if no match is found, then `r[i]` will remain `NA`, and we'll move on 
       // to the next element of `x`.
-      if( str_wcmp( s1[i], s2[j] ) == 0 ) {
+      if (strings_wildcard_equal(x[i], y[j])) {
         // Found a match. Set `r[i]` equal to the index of the match, then break.
         // (Add 1 because R indexing starts at 1, whereas C++ starts at 0.)
         r[i] = j + 1;
