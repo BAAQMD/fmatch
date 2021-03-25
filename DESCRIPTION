@@ -17,3 +17,4 @@ Suggests:
     tidyverse,
     here
 VignetteBuilder: knitr
+Encoding: UTF-8
