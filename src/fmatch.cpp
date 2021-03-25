@@ -33,7 +33,7 @@ IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y
 
   // Initialize our result. It's a vector of `NA`s, until/unless they
   // are set to an integer, which happens when a match is encountered.
-  IntegerVector r( x.size(), NA_INTEGER );
+  IntegerVector r( x_size, NA_INTEGER );
   
   // Copy everything to C-style strings before we start comparing.
   // This saves us from having to convert all of the strings in `y`
@@ -48,9 +48,9 @@ IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y
       // if no match is found, then `r(i)` will remain `NA`, and we'll move on 
       // to the next element of `x`.
       if( str_wcmp( s1[i], s2[j] ) == 0 ) {
-        // Found a match. Set `r(i)` equal to the index of the match, then break.
+        // Found a match. Set `r[i]` equal to the index of the match, then break.
         // (Add 1 because R indexing starts at 1, whereas C++ starts at 0.)
-        r(i) = j + 1;
+        r[i] = j + 1;
         break;
       }
     }
