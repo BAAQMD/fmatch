@@ -11,6 +11,8 @@
 #' @param y character
 #' @return integer positions of matches in \code{y} (\code{NA} indicates no match)
 #' 
+#' @export
+#' 
 fmatch <- function(x, y) {
     .Call(`_fmatch_fmatch`, x, y)
 }
