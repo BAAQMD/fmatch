@@ -70,8 +70,8 @@ test_that("handpicked src_code and SIC_id combinations", {
   
   # Note: see vignette for profiling using all strings and patterns
   
-  strings <- readRDS(here::here("tests", "testthat", "data", "strings.Rds"))
-  patterns <- readRDS(here::here("tests", "testthat", "data", "patterns.Rds"))
+  strings <- readRDS(system.file("extdata", "strings.Rds", package = "fmatch"))
+  patterns <- readRDS(system.file("extdata", "patterns.Rds", package = "fmatch"))
   
   expect_identical(patterns[62], "C22B?098????")
   expect_identical(fmatch("C22BG0983674", patterns), 62L)
