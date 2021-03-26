@@ -5,7 +5,7 @@ Version: 0.3
 Date: 2021-03-12
 Author: David Holstius
 Maintainer: David Holstius <dholstius@baaqmd.gov>
-Description: Fast string matching with limited wildcard support
+Description: Provides fast string matching with limited wildcard support.
 License: GPL (>= 2)
 Imports:
     Rcpp
