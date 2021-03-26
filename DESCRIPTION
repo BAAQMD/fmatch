@@ -15,6 +15,13 @@ Suggests:
     testthat,
     inventory,
     tidyverse,
-    here
+    knitr,
+    here,
+    microbenchmark,
+    ggplot2,
+    tidyr,
+    ggtools
+Remotes:
+  github::BAAQMD/ggtools
 VignetteBuilder: knitr
 Encoding: UTF-8
