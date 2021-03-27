@@ -24,6 +24,8 @@ char *as_c_str( String s )
 //' @param y character
 //' @return integer positions of matches in \code{y} (\code{NA} indicates no match)
 //' 
+//' @export
+//' 
 // [[Rcpp::export]]
 IntegerVector fmatch( std::vector< std::string > x, std::vector< std::string > y ) 
 {
